@@ -1,3 +1,4 @@
+.gitignore
 # Python
 __pycache__/
 *.py[cod]
@@ -27,7 +28,3 @@ backend/for_develop.txt
 backend/src/static/palette/
 backend/src/static/picture_test.html
 
-# IDE
-.idea/
-.vscode/
-*.swp
