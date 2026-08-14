@@ -1,0 +1,87 @@
+:root {
+    --bg: #F0F4EF;  /* Страница целиком — то, что вокруг карточки */
+    --card: #D5DDD5;  /* Поверхность карточки формы / поста — «лист поверх фона» */
+    --ink: #291528; /* Основной текст: заголовки, лейблы, обычные слова */
+    --muted: #5a4a58;  /* Вторичный текст: подсказки, «Уже есть аккаунт?», даты */
+    --accent: #291528; /* Главный акцент: кнопка, ссылки, важные действия */
+    --accent-text: #ffffff; /* Текст НА акценте: на кнопке с тёмным фоном обычно белый */
+    --line: #D5DDD5; /* Линии: рамки инпутов, разделители */
+    --radius: 12px; /* округление для форм и карточек*/
+    --gap: 12px; /* distance between fields */
+    --shadow: 0 8px 24px rgba(41, 21, 40, 0.08); /* лёгкая тень карточки */
+    --font: "Golos Text", system-ui, sans-serif;
+}
+
+
+
+body {
+    background-color: var(--bg) ; /* Укажите ваш цвет */
+    margin: 0; /* Убирает стандартные отступы браузера */
+    font-family: var(--font);
+    color: var(--ink);
+}
+.auth  {
+    display: flex; /* Включает режим Flexbox */
+    justify-content: center; /* Центрирует по горизонтали */
+    align-items: center; /* Центрирует по вертикали */
+    min-height: 100vh; /* Растягивает контейнер на всю высоту экрана */
+    color: var(--ink);
+}
+
+#regForm {
+    display: flex; 
+    flex-direction: column; 
+    gap: var(--gap);
+    box-shadow: var(--shadow); 
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 400px;
+    background: var(--card);
+}
+
+#regForm h2 {
+    color: var(--ink);
+}
+
+#regForm a {
+        color: var(--muted);
+} 
+
+#regForm input {
+    border-radius: 5px;
+    border-color: var(--line);
+    padding: 5px 6px;
+    box-sizing: border-box;
+}
+
+#regForm button {
+    background-color: var(--accent);
+    color: var(--accent-text);
+    border-radius: 5px;
+}
+
+#authForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    box-shadow: var(--shadow); 
+
+}
+
+#authForm h2 {color: var(--accent);}
+#authForm label {
+    color: var(--ink);
+}
+#authForm input {
+    border-radius: 2px;
+    border-color: var(--line);
+}
+#authForm a {
+    color: var(--muted);
+}
+
+#authForm button {
+    background-color: var(--accent);
+    color: var(--accent-text);
+
+}

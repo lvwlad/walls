@@ -1,0 +1,31 @@
+/* Coolors Exported Palette - https://coolors.co/8b85c1-f0f4ef-291528-757761-3f4739 */
+
+- CSV
+
+8b85c1,f0f4ef,291528,757761,3f4739
+
+- With #
+
+#8b85c1, #f0f4ef, #291528, #757761, #3f4739
+
+- Array
+
+["8b85c1","f0f4ef","291528","757761","3f4739"]
+
+- Object
+
+{"Soft Periwinkle":"8b85c1","Porcelain":"f0f4ef","Midnight Violet":"291528","Dusty Olive":"757761","Charcoal Brown":"3f4739"}
+
+- Extended Array
+
+[{"name":"Soft Periwinkle","hex":"8b85c1","rgb":[139,133,193],"cmyk":[28,31,0,24],"hsb":[246,31,76],"hsl":[246,33,64],"lab":[58,16,-30]},{"name":"Porcelain","hex":"f0f4ef","rgb":[240,244,239],"cmyk":[2,0,2,4],"hsb":[108,2,96],"hsl":[108,19,95],"lab":[96,-2,2]},{"name":"Midnight Violet","hex":"291528","rgb":[41,21,40],"cmyk":[0,49,2,84],"hsb":[303,49,16],"hsl":[303,32,12],"lab":[10,14,-9]},{"name":"Dusty Olive","hex":"757761","rgb":[117,119,97],"cmyk":[2,0,18,53],"hsb":[65,18,47],"hsl":[65,10,42],"lab":[49,-5,12]},{"name":"Charcoal Brown","hex":"3f4739","rgb":[63,71,57],"cmyk":[11,0,20,72],"hsb":[94,20,28],"hsl":[94,11,25],"lab":[29,-6,7]}]
+
+- XML
+
+<palette>
+  <color name="Soft Periwinkle" hex="8b85c1" r="139" g="133" b="193" />
+  <color name="Porcelain" hex="f0f4ef" r="240" g="244" b="239" />
+  <color name="Midnight Violet" hex="291528" r="41" g="21" b="40" />
+  <color name="Dusty Olive" hex="757761" r="117" g="119" b="97" />
+  <color name="Charcoal Brown" hex="3f4739" r="63" g="71" b="57" />
+</palette>

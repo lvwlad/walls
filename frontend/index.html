@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>walls — write and fun</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, sans-serif;
+            background: #f4f2ec;
+            color: #1a1a1a;
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* Двухколоночная раскладка: слева форма, справа лента */
+        .layout {
+            display: flex;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        .compose { flex: 1; }
+        .feed    { flex: 1; }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover { background: #333; }
+
+        /* Один пост в ленте */
+        .post {
+            background: #fff;
+            border: 1px solid #e5e2d9;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .post-text { white-space: pre-wrap; }         /* сохраняет переносы строк */
+        .post-date { color: #888; font-size: 13px; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <h1>the wall</h1>
+
+    <div class="layout">
+        <!-- ЛЕВО: форма -->
+        <div class="compose">
+            <textarea id="text" rows="6" placeholder="Напишите ваш текст здесь..."></textarea>
+            <button id="submit">Оставь меня на стене</button>
+        </div>
+
+        <!-- ПРАВО: сюда JS нарисует посты -->
+        <div class="feed" id="feed"></div>
+    </div>
+
+    <script>
+        // 1. Функция, которая идёт на бэк за постами и рисует их справа
+        async function loadPosts() {
+            const res  = await fetch('/posts');       // <-- твой GET-роут ленты
+            const posts = await res.json();           // бэк отдаёт массив постов
+            const feed = document.getElementById('feed');
+
+            feed.innerHTML = '';                      // очищаем ленту перед перерисовкой
+
+            // для каждого поста создаём блок и вставляем в ленту
+            for (const post of posts) {
+                const div = document.createElement('div');
+                div.className = 'post';
+                // textContent, а не innerHTML — чтобы текст поста не сломал вёрстку
+                const p = document.createElement('div');
+                p.className = 'post-text';
+                p.textContent = post.text;
+                const d = document.createElement('div');
+                d.className = 'post-date';
+                d.textContent = post.created_at;
+                div.appendChild(p);
+                div.appendChild(d);
+                feed.appendChild(div);
+            }
+        }
+
+        // 2. Функция отправки нового поста на бэк
+        async function sendPost() {
+            const textarea = document.getElementById('text');
+            const text = textarea.value.trim();
+            if (!text) return;                        // пустое не отправляем
+
+            await fetch('/posts', {                   // <-- твой POST-роут создания
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text })  // отправляем JSON { "text": "..." }
+            });
+
+            textarea.value = '';                      // очищаем поле
+            await loadPosts();                        // перезагружаем ленту, чтобы увидеть новый пост
+        }
+
+        // 3. Вешаем обработчик на кнопку
+        document.getElementById('submit').addEventListener('click', sendPost);
+
+        // 4. При загрузке страницы сразу показываем существующие посты
+        loadPosts();
+    </script>
+</body>
+</html>
